@@ -35,8 +35,11 @@ class ChatTools
     public function unblockBttvEmotes(string $channel)
     {
         $emotes = $this->bt->getEmotes($channel);
+        $currentBlockedTerms = $this->tgql->getBlockedTerms($channel);
         foreach ($emotes as $emote) {
-            $this->tgql->deleteBlockedTerm($channel, $emote['code']);
+            if (in_array($emote['code'], $currentBlockedTerms)) {
+                $this->tgql->deleteBlockedTerm($channel, $emote['code']);
+            }
         }
     }
 
