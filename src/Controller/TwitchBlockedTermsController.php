@@ -6,24 +6,20 @@ use App\Service\TwitchGQL;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TwitchBlockedTermsController extends AbstractFOSRestController
 {
 
-    public SerializerInterface $s;
-    public TwitchGQL $tgql;
+    private TwitchGQL $tgql;
 
     /**
      * TwitchBlockedTermsController constructor.
-     * @param SerializerInterface $s
      * @param TwitchGQL $tgql
      */
-    public function __construct(SerializerInterface $s, TwitchGQL $tgql)
+    public function __construct(TwitchGQL $tgql)
     {
-        $this->s = $s;
         $this->tgql = $tgql;
     }
 
