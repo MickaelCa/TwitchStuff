@@ -138,4 +138,33 @@ class TwitchGQL
 
         return $result;
     }
+
+    public function deleteBlockedTerm(string $channel, string $term)
+    {
+
+        $channelId = $this->twh->getChannelId($channel);
+
+        $query = [
+            [
+                "operationName" => "Chat_StandaloneDeleteChannelBlockedTerm",
+                "variables" => [
+                    "input" => [
+                        "channelID" => $channelId,
+                        "phrases" => [$term],
+                        "isModEditable" => true
+                    ]
+                ],
+                "extensions" => [
+                    "persistedQuery" => [
+                        "version" => 1,
+                        "sha256Hash" => "8542513d0679f557906f234cc23014ab8d0e198fc616dbde60b9f992d180752c"
+                    ]
+                ]
+            ]
+        ];
+
+        $result = $this->gqlQuery($query);
+
+        return $result;
+    }
 }
