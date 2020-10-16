@@ -1,0 +1,22 @@
+version: '3'
+services:
+  twitch_stuff:
+    build:
+      context: .
+      dockerfile: Dockerfile.symfony
+    env_file:
+      - .env
+      - .env.local
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - 8000:80
+    environment:
+      - "PHP_FPM_HOST=twitch_stuff"
+      - "PHP_FPM_PORT=9000"
+    volumes_from:
+      - twitch_stuff
+    links:
+      - twitch_stuff

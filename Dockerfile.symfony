@@ -1,0 +1,21 @@
+FROM composer as composer
+WORKDIR /app
+COPY /composer.* /app/
+RUN composer install
+
+FROM php:fpm
+ENV APACHE_DOCUMENT_ROOT /app
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    libcurl4-openssl-dev \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install intl curl json
+WORKDIR /app
+COPY --from=composer /app/var /app/var
+COPY --from=composer /app/vendor /app/vendor
+COPY / /app/
+
+RUN chown -R www-data:www-data /app
+
+VOLUME /app
