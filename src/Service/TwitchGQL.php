@@ -134,7 +134,7 @@ class TwitchGQL
             ]
         ];
 
-        $result = $this->gqlQuery(dump($query));
+        $result = $this->gqlQuery($query);
 
         return $result;
     }
