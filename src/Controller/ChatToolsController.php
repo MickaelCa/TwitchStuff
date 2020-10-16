@@ -33,7 +33,9 @@ class ChatToolsController extends AbstractFOSRestController
     public function blockBttvEmotes(string $channel)
     {
         $this->ct->blockBttvEmotes($channel);
-        return $this->json('SeemsGood');
+        return $this->json([
+            'chatResponse' => 'SeemsGood'
+        ]);
     }
 
     /**
@@ -45,7 +47,9 @@ class ChatToolsController extends AbstractFOSRestController
     public function unblockBttvEmotes(string $channel)
     {
         $this->ct->unblockBttvEmotes($channel);
-        return $this->json('SeemsGood');
+        return $this->json([
+            'chatResponse' => 'SeemsGood'
+        ]);
     }
 
 
