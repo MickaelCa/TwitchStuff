@@ -2,14 +2,20 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.4",
         "ext-ctype": "*",
+        "ext-curl": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "composer/package-versions-deprecated": "^1.11",
+        "curl/curl": "^2.3",
         "doctrine/annotations": "^1.0",
-        "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "friendsofsymfony/rest-bundle": "^3.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "jms/serializer-bundle": "^3.7",
+        "nicklaw5/twitch-api-php": "^3.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.1.*",
@@ -92,7 +98,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "5.1.*"
         }
     }

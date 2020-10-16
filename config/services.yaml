@@ -29,3 +29,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    TwitchApi\TwitchApi:
+        arguments:
+            - { client_id: "%env(TWITCH_CLIENT_ID)%" }
+
+    App\Service\TwitchGQL:
+        calls:
+            - [ setCredentials, [ "%env(TWITCH_GQL_OAUTH)%", "%env(TWITCH_GQL_CLIENT_ID)%" ] ]
